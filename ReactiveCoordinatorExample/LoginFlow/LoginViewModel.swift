@@ -13,15 +13,18 @@ enum LoginSteps: Step { // conform to the Step protocol
     case launch(LoginViewModel, root: UIViewController)
 
     // to login
-    case login(toOpen: SettingsViewModel)
+    case login((String) -> Void)
+
+    // to have logged in
+    case loggedIn(toOpen: GreetViewModel)
 }
 
 class LoginViewModel: StepProvider { // conform to StepProvider
     private let stepSubject = PassthroughSubject<Step, Never>()
     var stepPublisher: AnyPublisher<Step, Never> { stepSubject.eraseToAnyPublisher() }
 
-    let onLogin: (String) -> SettingsViewModel
-    init(onLogin: @escaping (String) -> SettingsViewModel) {
+    let onLogin: (String) -> GreetViewModel
+    init(onLogin: @escaping (String) -> GreetViewModel) {
         self.onLogin = onLogin
     }
 
@@ -29,27 +32,21 @@ class LoginViewModel: StepProvider { // conform to StepProvider
         let tapLoginButton: AnyPublisher<Void, Never>
     }
 
-    struct Output {
-        let loginName: AnyPublisher<String, Never>
-    }
-
     // to bind the view controller
-    func bind(_ input: Input, subscriptions: inout [AnyCancellable]) -> Output {
+    func bind(_ input: Input, subscriptions: inout [AnyCancellable]) {
 
-        let loginName = Just("World")
+        let loginNameSubject = PassthroughSubject<String, Never>()
 
         // map the input to a step
         // and emit to the step subject
         input.tapLoginButton
-            .map { loginName.first() }
-            .switchToLatest()
-            .map(onLogin)
-            .map { LoginSteps.login(toOpen: $0) }
+            .map { LoginSteps.login { loginNameSubject.send($0) } }
             .subscribe(stepSubject)
             .store(in: &subscriptions)
 
-        return Output(
-            loginName: loginName.eraseToAnyPublisher()
-        )
+        loginNameSubject
+            .map { [onLogin] in LoginSteps.loggedIn(toOpen: onLogin($0)) }
+            .subscribe(stepSubject)
+            .store(in: &subscriptions)
     }
 }

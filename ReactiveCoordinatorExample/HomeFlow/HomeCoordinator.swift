@@ -14,7 +14,7 @@ final class HomeCoordinator: Coordinator { // subclass Coordinator
         case let step as HomeSteps:
             return navigate(to: step)
 
-        case let step as SettingsSteps:
+        case let step as GreetSteps:
             return navigate(to: step)
 
         default:
@@ -46,18 +46,18 @@ final class HomeCoordinator: Coordinator { // subclass Coordinator
             // we present the login page in response to the step
             return .startChildFlow(LoginCoordinator(), with: LoginSteps.launch(viewModel, root: nav!))
 
-        // when asked to show the settings page
-        case .showSettings(let viewModel):
-            // we present the settings in response to the step
-            let settings = SettingsViewController(viewModel: viewModel)
-            nav?.pushViewController(settings, animated: true)
-            return .subscribeSteps(settings.viewModel, presenting: settings)
+        // when asked to show the greet page
+        case .showGreet(let viewModel):
+            // we present the greet in response to the step
+            let greet = GreetViewController(viewModel: viewModel)
+            nav?.pushViewController(greet, animated: true)
+            return .subscribeSteps(greet.viewModel, presenting: greet)
 
         }
 
     }
 
-    private func navigate(to step: SettingsSteps) -> Navigation {
+    private func navigate(to step: GreetSteps) -> Navigation {
         switch step {
         case .showVersion(let version):
             let alert = UIAlertController(title: "Version", message: version, preferredStyle: .alert)

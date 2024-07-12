@@ -18,8 +18,8 @@
 		E3B1BB772C418E0A0084B115 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B1BB762C418E0A0084B115 /* LoginViewController.swift */; };
 		E3B1BB792C418E950084B115 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B1BB782C418E950084B115 /* HomeViewModel.swift */; };
 		E3B1BB7C2C4192D00084B115 /* CombineCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = E3B1BB7B2C4192D00084B115 /* CombineCocoa */; };
-		E3B1BB7E2C4193210084B115 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B1BB7D2C4193210084B115 /* SettingsViewController.swift */; };
-		E3BB0EE02C41975A008B322F /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BB0EDF2C41975A008B322F /* SettingsViewModel.swift */; };
+		E3B1BB7E2C4193210084B115 /* GreetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B1BB7D2C4193210084B115 /* GreetViewController.swift */; };
+		E3BB0EE02C41975A008B322F /* GreetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BB0EDF2C41975A008B322F /* GreetViewModel.swift */; };
 		E3BB0EE42C41999D008B322F /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BB0EE32C41999D008B322F /* LoginViewModel.swift */; };
 		E3BB0EE62C4199D2008B322F /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BB0EE52C4199D2008B322F /* LoginCoordinator.swift */; };
 /* End PBXBuildFile section */
@@ -37,8 +37,8 @@
 		E3B1BB742C418D710084B115 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		E3B1BB762C418E0A0084B115 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		E3B1BB782C418E950084B115 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
-		E3B1BB7D2C4193210084B115 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		E3BB0EDF2C41975A008B322F /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		E3B1BB7D2C4193210084B115 /* GreetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreetViewController.swift; sourceTree = "<group>"; };
+		E3BB0EDF2C41975A008B322F /* GreetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreetViewModel.swift; sourceTree = "<group>"; };
 		E3BB0EE32C41999D008B322F /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		E3BB0EE52C4199D2008B322F /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -101,8 +101,8 @@
 				E3B1BB742C418D710084B115 /* HomeCoordinator.swift */,
 				E3B1BB782C418E950084B115 /* HomeViewModel.swift */,
 				E3B1BB5C2C4186230084B115 /* HomeViewController.swift */,
-				E3BB0EDF2C41975A008B322F /* SettingsViewModel.swift */,
-				E3B1BB7D2C4193210084B115 /* SettingsViewController.swift */,
+				E3BB0EDF2C41975A008B322F /* GreetViewModel.swift */,
+				E3B1BB7D2C4193210084B115 /* GreetViewController.swift */,
 			);
 			path = HomeFlow;
 			sourceTree = "<group>";
@@ -197,13 +197,13 @@
 				E3BB0EE42C41999D008B322F /* LoginViewModel.swift in Sources */,
 				E3B1BB5D2C4186230084B115 /* HomeViewController.swift in Sources */,
 				E3B1BB772C418E0A0084B115 /* LoginViewController.swift in Sources */,
-				E3BB0EE02C41975A008B322F /* SettingsViewModel.swift in Sources */,
+				E3BB0EE02C41975A008B322F /* GreetViewModel.swift in Sources */,
 				E3BB0EE62C4199D2008B322F /* LoginCoordinator.swift in Sources */,
 				E3B1BB792C418E950084B115 /* HomeViewModel.swift in Sources */,
 				E3B1BB592C4186230084B115 /* AppDelegate.swift in Sources */,
 				E3B1BB5B2C4186230084B115 /* SceneDelegate.swift in Sources */,
 				E3B1BB6F2C418D140084B115 /* UIViewController+Publishers.swift in Sources */,
-				E3B1BB7E2C4193210084B115 /* SettingsViewController.swift in Sources */,
+				E3B1BB7E2C4193210084B115 /* GreetViewController.swift in Sources */,
 				E3B1BB752C418D710084B115 /* HomeCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

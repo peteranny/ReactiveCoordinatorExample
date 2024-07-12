@@ -19,6 +19,10 @@ class HomeViewController: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: false)
         view.backgroundColor = .white
 
+        let greetButton = UIButton()
+        greetButton.setTitle("Greet", for: .normal)
+        greetButton.setTitleColor(.blue, for: .normal)
+
         let loginButton = UIButton()
         loginButton.setTitle("Login", for: .normal)
         loginButton.setTitleColor(.blue, for: .normal)
@@ -27,11 +31,7 @@ class HomeViewController: UIViewController {
         logoutButton.setTitle("Logout", for: .normal)
         logoutButton.setTitleColor(.red, for: .normal)
 
-        let settingsButton = UIButton()
-        settingsButton.setTitle("Settings", for: .normal)
-        settingsButton.setTitleColor(.blue, for: .normal)
-
-        let stackView = UIStackView(arrangedSubviews: [loginButton, logoutButton, settingsButton])
+        let stackView = UIStackView(arrangedSubviews: [greetButton, loginButton, logoutButton])
         stackView.axis = .vertical
         stackView.alignment = .center
         stackView.distribution = .fillEqually
@@ -43,7 +43,7 @@ class HomeViewController: UIViewController {
         let input = HomeViewModel.Input(
             tapLoginButton: loginButton.tapPublisher,
             tapLogoutButton: logoutButton.tapPublisher,
-            tapSettingsButton: settingsButton.tapPublisher
+            tapGreetButton: greetButton.tapPublisher
         )
 
         let output = viewModel.bind(input, subscriptions: &subscriptions)

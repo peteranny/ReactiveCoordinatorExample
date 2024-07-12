@@ -1,5 +1,5 @@
 //
-//  SettingsViewController.swift
+//  GreetViewController.swift
 //  ReactiveCoordinatorExample
 //
 //  Created by Peteranny on 2024/7/12.
@@ -9,10 +9,10 @@ import Combine
 import CombineCocoa
 import UIKit
 
-class SettingsViewController: UIViewController {
+class GreetViewController: UIViewController {
 
-    let viewModel: SettingsViewModel
-    init(viewModel: SettingsViewModel) {
+    let viewModel: GreetViewModel
+    init(viewModel: GreetViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -24,7 +24,7 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = "Settings"
+        title = "Greet"
         view.backgroundColor = .white
 
         let greetLabel = UILabel()
@@ -37,7 +37,7 @@ class SettingsViewController: UIViewController {
 
         // install bindings
 
-        let input = SettingsViewModel.Input(
+        let input = GreetViewModel.Input(
             tapVersionButton: versionButton.tapPublisher
         )
 

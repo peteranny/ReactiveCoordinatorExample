@@ -27,6 +27,7 @@ class LoginViewController: UIViewController {
         view.backgroundColor = .white
 
         let loginButton = UIButton()
+        loginButton.setTitle("Click To Login", for: .normal)
         loginButton.setTitleColor(.blue, for: .normal)
         loginButton.frame = view.bounds
         view.addSubview(loginButton)
@@ -37,12 +38,7 @@ class LoginViewController: UIViewController {
             tapLoginButton: loginButton.tapPublisher
         )
 
-        let output = viewModel.bind(input, subscriptions: &subscriptions)
-
-        output.loginName
-            .map { "Click To Login with: \($0)" }
-            .sink { loginButton.setTitle($0, for: .normal) }
-            .store(in: &subscriptions)
+        viewModel.bind(input, subscriptions: &subscriptions)
     }
 
     private var subscriptions: [AnyCancellable] = []

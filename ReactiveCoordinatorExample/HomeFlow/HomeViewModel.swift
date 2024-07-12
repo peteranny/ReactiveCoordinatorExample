@@ -15,8 +15,8 @@ enum HomeSteps: Step { // conform to the Step protocol
     // to show the login page
     case showLogin(LoginViewModel)
 
-    // to show the settings page
-    case showSettings(SettingsViewModel)
+    // to show the greet page
+    case showGreet(GreetViewModel)
 }
 
 class HomeViewModel: StepProvider { // conform to StepProvider
@@ -26,7 +26,7 @@ class HomeViewModel: StepProvider { // conform to StepProvider
     struct Input {
         let tapLoginButton: AnyPublisher<Void, Never>
         let tapLogoutButton: AnyPublisher<Void, Never>
-        let tapSettingsButton: AnyPublisher<Void, Never>
+        let tapGreetButton: AnyPublisher<Void, Never>
     }
 
     struct Output {
@@ -44,7 +44,7 @@ class HomeViewModel: StepProvider { // conform to StepProvider
             .map {
                 HomeSteps.showLogin(LoginViewModel(onLogin: { loginName in
                     loginNameSubject.send(loginName)
-                    return SettingsViewModel(loginName: loginName)
+                    return GreetViewModel(loginName: loginName)
                 }))
             }
             .subscribe(stepSubject)
@@ -55,10 +55,10 @@ class HomeViewModel: StepProvider { // conform to StepProvider
             .subscribe(loginNameSubject)
             .store(in: &subscriptions)
 
-        input.tapSettingsButton
+        input.tapGreetButton
             .map { loginNameSubject.first() }
             .switchToLatest()
-            .map { HomeSteps.showSettings(SettingsViewModel(loginName: $0)) }
+            .map { HomeSteps.showGreet(GreetViewModel(loginName: $0)) }
             .subscribe(stepSubject)
             .store(in: &subscriptions)
 

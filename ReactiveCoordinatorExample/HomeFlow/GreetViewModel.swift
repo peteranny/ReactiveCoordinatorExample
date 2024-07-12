@@ -1,5 +1,5 @@
 //
-//  SettingsViewModel.swift
+//  GreetViewModel.swift
 //  ReactiveCoordinatorExample
 //
 //  Created by Peteranny on 2024/7/13.
@@ -8,12 +8,12 @@
 import Combine
 import UIKit
 
-enum SettingsSteps: Step { // conform to the Step protocol
+enum GreetSteps: Step { // conform to the Step protocol
     // to open the version alert
     case showVersion(String)
 }
 
-class SettingsViewModel: StepProvider { // conform to StepProvider
+class GreetViewModel: StepProvider { // conform to StepProvider
     private let stepSubject = PassthroughSubject<Step, Never>()
     var stepPublisher: AnyPublisher<Step, Never> { stepSubject.eraseToAnyPublisher() }
 
@@ -36,7 +36,7 @@ class SettingsViewModel: StepProvider { // conform to StepProvider
         // map the input to a step
         // and emit to the step subject
         input.tapVersionButton
-            .map { SettingsSteps.showVersion("1.0.0") }
+            .map { GreetSteps.showVersion("1.0.0") }
             .subscribe(stepSubject)
             .store(in: &subscriptions)
 

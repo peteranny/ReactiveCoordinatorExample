@@ -26,6 +26,7 @@ final class LoginCoordinator: Coordinator { // subclass Coordinator
         // when asked to launch the editor
         case let .launch(viewModel, root):
             let login = LoginViewController(viewModel: viewModel)
+            self.root = login
             root.present(login, animated: true)
             return .many([
                 // we start the flow whose lifecycle follows the root
@@ -37,10 +38,25 @@ final class LoginCoordinator: Coordinator { // subclass Coordinator
             ])
 
         // when asked to login
-        case .login(let settingsViewModel):
+        case .login(let completion):
+            let controller = UIAlertController(title: "Login", message: "Enter your name", preferredStyle: .alert)
+            controller.addTextField()
+            let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+                if let loginName = controller.textFields?[0].text {
+                    completion(loginName)
+                }
+            }
+            controller.addAction(okAction)
+            root?.present(controller, animated: true)
+            return .subscribeNoSteps
+
+        // when asked to complete the login
+        case .loggedIn(let greetViewModel):
             // we end the flow
-            return .endFlowAndForwardToParent(HomeSteps.showSettings(settingsViewModel))
+            return .endFlowAndForwardToParent(HomeSteps.showGreet(greetViewModel))
         }
 
     }
+
+    private weak var root: UIViewController?
 }
